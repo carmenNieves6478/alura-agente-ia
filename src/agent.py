@@ -70,17 +70,22 @@ class AluraAgent:
         """
         Método de respaldo local en caso de no contar aún con API Key configurada.
         """
-        q_lower = question.lower()
-        matched_lines = []
-        for line in self.context.splitlines():
-            if any(term in line.lower() for term in q_lower.split() if len(term) > 3):
-                matched_lines.append(line)
+        q_words = [w.lower().strip("?,.¿¡") for w in question.split() if len(w) > 2]
+        matches = []
+        
+        for doc in self.loader.load_all_documents():
+            for line in doc["content"].splitlines():
+                if line.strip() and any(w in line.lower() for w in q_words if w not in ["que", "para", "como", "usan", "cual", "donde"]):
+                    matches.append(f"• [{doc['filename']}] {line.strip()}")
 
-        snippet = "\n".join(matched_lines[:10]) if matched_lines else "No se encontraron coincidencias exactas."
+        if matches:
+            snippet = "\n".join(matches[:10])
+        else:
+            snippet = "Se encontraron documentos cargados pero no hubo coincidencia directa de términos en el texto."
 
         return (
-            "⚠️ **Nota**: No se ha detectado una `GEMINI_API_KEY` válida configurada.\n\n"
-            "Sin embargo, he analizado los documentos locales cargados en `data/` y este es el contenido relevante encontrado:\n\n"
-            f"```text\n{snippet}\n```\n\n"
-            "💡 *Para habilitar respuestas con lenguaje natural completo, agrega tu `GEMINI_API_KEY` en la barra lateral o en el archivo `.env`.*"
+            "⚠️ **Modo Local (Sin GEMINI_API_KEY)**\n\n"
+            "Información relevante extraída directamente de los documentos:\n\n"
+            f"{snippet}\n\n"
+            "💡 *Para obtener respuestas completas con Inteligencia Artificial y lenguaje natural, ingresa tu `GEMINI_API_KEY` en `.env` o en la app web.*"
         )
