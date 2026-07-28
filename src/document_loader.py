@@ -53,7 +53,10 @@ class DocumentLoader:
     def _read_csv_file(self, file_path: str) -> str:
         try:
             df = pd.read_csv(file_path)
-            return df.to_markdown(index=False)
+            try:
+                return df.to_markdown(index=False)
+            except Exception:
+                return df.to_string(index=False)
         except Exception as e:
             return f"[Error leyendo CSV: {e}]"
 
