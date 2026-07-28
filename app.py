@@ -117,15 +117,25 @@ with st.sidebar:
         
     st.title("⚙️ Configuración")
 
-    # API Key Input
+    # Estado y gestión segura de API Key
+    st.subheader("🔑 Clave API de Gemini")
+    
+    current_key = st.session_state.get("api_key", GEMINI_API_KEY or "")
+    if current_key:
+        st.success("🟢 API Key Conectada (Segura)")
+    else:
+        st.warning("⚠️ Sin API Key (Ejecutando en Modo Local)")
+
     user_api_key = st.text_input(
-        "Clave API de Google Gemini:",
+        "Modificar o ingresar API Key:",
         type="password",
-        value=st.session_state.get("api_key", GEMINI_API_KEY or ""),
-        help="Obtén tu clave gratuita en Google AI Studio"
+        value="",
+        placeholder="Introduce nueva clave (opcional)...",
+        help="En el deploy, la clave se configura de forma segura en las variables de entorno del servidor OCI."
     )
     if user_api_key:
         st.session_state["api_key"] = user_api_key
+        st.rerun()
 
     st.divider()
 
