@@ -5,60 +5,98 @@ from src.config import DATA_DIR, GEMINI_API_KEY
 
 # Configuración de página de Streamlit
 st.set_page_config(
-    page_title="NexusMind AI - Asistente de Documentación",
+    page_title="NexusMind AI - Asistente IA",
     page_icon="⚡",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Estilo personalizado CSS en tonos celestes / cian (Sky Blue & Cyan Theme)
+# Estilo personalizado CSS: TEMA OSCURO PREMIUM CON ACENTOS CELESTE NEÓN
 st.markdown("""
     <style>
-    /* Fondo principal y fuentes */
+    /* Fondo principal Oscuro */
     .stApp {
-        background-color: #F8FAFC;
+        background-color: #090D16 !important;
+        color: #F1F5F9 !important;
     }
     
-    /* Header principal */
+    /* Encabezados y títulos con degradado Celeste Neón */
     .main-header {
-        font-size: 2.4rem;
+        font-size: 2.6rem;
         font-weight: 800;
-        background: linear-gradient(135deg, #0284C7 0%, #06B6D4 100%);
+        background: linear-gradient(135deg, #00F2FE 0%, #4FACFE 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
-        margin-bottom: 0.1rem;
+        margin-bottom: 0.2rem;
+        text-shadow: 0 0 25px rgba(0, 242, 254, 0.2);
     }
     .sub-header {
-        font-size: 1.05rem;
-        color: #475569;
-        margin-bottom: 1.8rem;
+        font-size: 1.1rem;
+        color: #94A3B8 !important;
+        margin-bottom: 2rem;
     }
-    
-    /* Sidebar personalizado */
+
+    /* Sidebar Oscuro */
     [data-testid="stSidebar"] {
-        background: linear-gradient(180deg, #F0F9FF 0%, #E0F2FE 100%);
-        border-right: 1px solid #BAE6FD;
+        background-color: #060911 !important;
+        border-right: 1px solid #1E293B !important;
     }
     
-    /* Tarjetas de mensajes */
+    /* Textos en Sidebar */
+    [data-testid="stSidebar"] * {
+        color: #E2E8F0 !important;
+    }
+
+    /* Estilo de los Chat Messages (Burbujas en Tema Oscuro) */
     .stChatMessage {
-        border-radius: 12px;
-        box-shadow: 0 2px 4px rgba(14, 165, 233, 0.05);
+        background-color: #111827 !important;
+        border: 1px solid #1E293B !important;
+        border-radius: 12px !important;
+        color: #F8FAFC !important;
+        margin-bottom: 1rem !important;
     }
     
-    /* Botones de sugerencias */
+    .stChatMessage[data-testimonial="user"] {
+        background-color: #0F172A !important;
+        border: 1px solid #0284C7 !important;
+    }
+
+    /* Inputs de texto */
+    .stTextInput input, .stFileUploader section {
+        background-color: #1E293B !important;
+        color: #FFFFFF !important;
+        border: 1px solid #334155 !important;
+        border-radius: 8px !important;
+    }
+    .stTextInput input:focus {
+        border-color: #00F2FE !important;
+        box-shadow: 0 0 10px rgba(0, 242, 254, 0.4) !important;
+    }
+
+    /* Botones de sugerencia con resplandor Celeste Neón */
     .stButton>button {
-        background: linear-gradient(135deg, #38BDF8 0%, #0284C7 100%);
-        color: white !important;
-        border: none;
-        border-radius: 8px;
-        font-weight: 600;
-        transition: all 0.3s ease;
+        background: linear-gradient(135deg, #0284C7 0%, #06B6D4 100%) !important;
+        color: #FFFFFF !important;
+        border: 1px solid #38BDF8 !important;
+        border-radius: 8px !important;
+        font-weight: 600 !important;
+        padding: 0.5rem 1rem !important;
+        transition: all 0.3s ease-in-out !important;
+        box-shadow: 0 0 12px rgba(6, 182, 212, 0.3) !important;
     }
     .stButton>button:hover {
-        background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
-        transform: translateY(-2px);
-        box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+        background: linear-gradient(135deg, #00F2FE 0%, #0284C7 100%) !important;
+        border-color: #00F2FE !important;
+        transform: translateY(-2px) !important;
+        box-shadow: 0 0 20px rgba(0, 242, 254, 0.6) !important;
+    }
+
+    /* Divisores y markdown */
+    hr {
+        border-color: #1E293B !important;
+    }
+    p, li, span, h1, h2, h3, h4, h5, h6 {
+        color: #F8FAFC !important;
     }
     </style>
 """, unsafe_allow_html=True)
