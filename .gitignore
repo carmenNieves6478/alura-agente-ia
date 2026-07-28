@@ -46,3 +46,8 @@ venv.bak/
 # OS files
 Thumbs.db
 .DS_Store
+
+# Challenge instructions (local only)
+Entregable.md
+Instrucciones.md
+
