@@ -50,7 +50,7 @@ class AluraAgent:
 
         # Si tenemos cliente Gemini configurado
         if self.client:
-            models_to_try = ["gemini-1.5-flash", "gemini-2.0-flash", "gemini-1.5-pro"]
+            models_to_try = ["gemini-flash-latest", "gemini-2.0-flash", "gemini-2.5-flash", "gemini-flash-lite-latest"]
             quota_or_key_error = None
             for model_name in models_to_try:
                 try:
@@ -65,10 +65,8 @@ class AluraAgent:
                     return response.text
                 except Exception as e:
                     err_str = str(e)
-                    if "429" in err_str or "RESOURCE_EXHAUSTED" in err_str or "limit: 0" in err_str:
-                        quota_or_key_error = "Excedido límite de cuota mensual/diaria o la clave API no tiene activado el nivel gratuito en AI Studio."
-                    elif "400" in err_str or "API_KEY_INVALID" in err_str:
-                        quota_or_key_error = "Clave API no válida. Asegúrate de obtener una clave que comience por 'AIzaSy...' en https://aistudio.google.com/app/apikey"
+                    if "429" in err_str or "RESOURCE_EXHAUSTED" in err_str:
+                        quota_or_key_error = f"El modelo {model_name} alcanzó su límite temporal de cuota."
                     else:
                         quota_or_key_error = err_str
 
