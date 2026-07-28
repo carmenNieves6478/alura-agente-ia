@@ -7,7 +7,7 @@
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Framework](https://img.shields.io/badge/AI-Google_Gemini_Flash-4285F4.svg)](https://aistudio.google.com/)
 [![Web UI](https://img.shields.io/badge/UI-Streamlit-FF4B4B.svg)](https://streamlit.io/)
-[![Deploy](https://img.shields.io/badge/Deploy-OCI_Compute-O80000.svg)](https://www.oracle.com/cloud/)
+[![Deploy Status](https://img.shields.io/badge/Deploy-Render_Active-00E676.svg)](https://alura-agente-ia.onrender.com/)
 
 ---
 
@@ -150,11 +150,13 @@ Abre tu navegador en `http://localhost:8501`.
 
 ---
 
-## ☁️ Evidencia de Deploy en la Nube (Render / OCI)
+## ☁️ Evidencia de Deploy en la Nube (Render.com)
 
-La aplicación está lista para ser desplegada en la nube mediante **Render.com** / **OCI Compute**, garantizando alta disponibilidad 24/7.
+La aplicación fue desplegada exitosamente en la nube mediante **Render.com** utilizando entorno Python 3 y servidor de alta disponibilidad 24/7.
 
-- **Enlace de la aplicación desplegada**: `https://alura-agente-ia.onrender.com` (o enlace asignado por Render).
+- 🌐 **Enlace Público de la Aplicación en Vivo**: [https://alura-agente-ia.onrender.com/](https://alura-agente-ia.onrender.com/)
+- ⚡ **Estado del Servicio**: `Active / Running (100% Funcional)`
+- 🔑 **Seguridad de API**: Clave API cargada mediante variables de entorno seguras en el servidor.
 
 ---
 
