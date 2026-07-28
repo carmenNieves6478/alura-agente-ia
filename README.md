@@ -158,6 +158,11 @@ La aplicación fue desplegada exitosamente en la nube mediante **Render.com** ut
 - ⚡ **Estado del Servicio**: `Active / Running (100% Funcional)`
 - 🔑 **Seguridad de API**: Clave API cargada mediante variables de entorno seguras en el servidor.
 
+<p align="center">
+  <img src="assets/captra_corriendo_reder_nube.png" width="850" alt="Evidencia de Deploy Activo en Render.com">
+  <br><em>Captura de la aplicación desplegada y ejecutándose activamente en vivo en Render.com.</em>
+</p>
+
 ---
 
 ## 📄 Licencia
