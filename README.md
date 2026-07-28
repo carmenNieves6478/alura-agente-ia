@@ -1,7 +1,11 @@
-# 🤖 Alura Agente - Asistente de Documentación IA (Challenge Alura Latam)
+<p align="center">
+  <img src="assets/logo.jpg" width="160" alt="NexusMind Logo" style="border-radius: 15px;">
+</p>
+
+# 🤖 NexusMind AI (Alura Agente) - Asistente Inteligente RAG
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
-[![Framework](https://img.shields.io/badge/AI-Google_Gemini_2.5_Flash-4285F4.svg)](https://aistudio.google.com/)
+[![Framework](https://img.shields.io/badge/AI-Google_Gemini_Flash-4285F4.svg)](https://aistudio.google.com/)
 [![Web UI](https://img.shields.io/badge/UI-Streamlit-FF4B4B.svg)](https://streamlit.io/)
 [![Deploy](https://img.shields.io/badge/Deploy-OCI_Compute-O80000.svg)](https://www.oracle.com/cloud/)
 

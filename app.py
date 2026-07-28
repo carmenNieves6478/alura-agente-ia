@@ -45,7 +45,10 @@ st.markdown("<div class='sub-header'>Respuestas instantáneas en lenguaje natura
 
 # Sidebar
 with st.sidebar:
-    st.image("https://img.icons8.com/isometric-folders/100/bot.png", width=70)
+    if os.path.exists("assets/logo.jpg"):
+        st.image("assets/logo.jpg", width=110)
+    else:
+        st.image("https://img.icons8.com/isometric-folders/100/bot.png", width=70)
     st.title("⚙️ Configuración")
 
     # API Key Input
