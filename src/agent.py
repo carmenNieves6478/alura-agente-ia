@@ -50,8 +50,8 @@ class AluraAgent:
 
         # Si tenemos cliente Gemini configurado
         if self.client:
-            models_to_try = ["gemini-2.0-flash", "gemini-1.5-flash", "gemini-1.5-pro"]
-            errors = []
+            models_to_try = ["gemini-1.5-flash", "gemini-2.0-flash", "gemini-1.5-pro"]
+            quota_or_key_error = None
             for model_name in models_to_try:
                 try:
                     response = self.client.models.generate_content(
@@ -64,11 +64,20 @@ class AluraAgent:
                     )
                     return response.text
                 except Exception as e:
-                    errors.append(f"[{model_name}]: {e}")
+                    err_str = str(e)
+                    if "429" in err_str or "RESOURCE_EXHAUSTED" in err_str or "limit: 0" in err_str:
+                        quota_or_key_error = "Excedido límite de cuota mensual/diaria o la clave API no tiene activado el nivel gratuito en AI Studio."
+                    elif "400" in err_str or "API_KEY_INVALID" in err_str:
+                        quota_or_key_error = "Clave API no válida. Asegúrate de obtener una clave que comience por 'AIzaSy...' en https://aistudio.google.com/app/apikey"
+                    else:
+                        quota_or_key_error = err_str
 
-            # Si falla con la API Key configurada, usar búsqueda local y mostrar la nota
+            # Si la API falla, devolver respuesta limpia usando el contexto RAG local
             fallback_res = self._local_fallback_answer(question)
-            return f"❌ **Error al autenticar en Google Gemini API**:\n{errors[0]}\n\n---\n{fallback_res}"
+            return (
+                f"⚠️ **Nota de API Gemini**: ({quota_or_key_error})\n\n"
+                f"{fallback_res}"
+            )
 
         # Si no hay API Key configurada todavía, proveer una búsqueda basada en coincidencia directa de contexto / fallback
         return self._local_fallback_answer(question)
