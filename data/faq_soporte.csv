@@ -1,0 +1,7 @@
+id,categoria,pregunta,respuesta
+1,Soporte,"¿Cómo restablezco mi contraseña en NexusSaaS?","Puedes restablecer tu contraseña haciendo clic en '¿Olvidaste tu contraseña?' en la pantalla de inicio de sesión o solicitando un enlace de recuperación a tu administrador."
+2,Soporte,"¿Qué hago si la API responde con error HTTP 429?","El error 429 indica que se ha superado el límite de peticiones (Rate Limit). Debes esperar 60 segundos antes de realizar una nueva solicitud o actualizar tu plan a Pro/Enterprise."
+3,Facturación,"¿Puedo cambiar de plan en cualquier momento?","Sí, puedes actualizar o reducir tu plan desde la sección Facturación en la configuración de la cuenta. Los cambios se aplicarán inmediatamente."
+4,Seguridad,"¿NexusSaaS cumple con el estándar GDPR y ISO 27001?","Sí, NexusSaaS cumple totalmente con el Reglamento General de Protección de Datos (GDPR) y cuenta con la certificación ISO/IEC 27001:2022."
+5,Integración,"¿Cómo puedo obtener una clave de API (API Key)?","Ve a Configuración > Desarrolladores > Claves de API y haz clic en 'Generar Nueva Clave API'. Recuerda guardar tu clave en un lugar seguro."
+6,Soporte,"¿Cuál es el tiempo promedio de respuesta del soporte técnico?","Para el plan Gratuito es de 24-48 horas. Para el plan Pro es menor a 4 horas. Para el plan Enterprise la atención es prioritaria 24/7 con SLA garantizado de 15 minutos."

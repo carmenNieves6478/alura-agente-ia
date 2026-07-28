@@ -1,0 +1,4 @@
+plan,precio_mensual_usd,usuarios_incluidos,limite_peticiones_api_minuto,soporte,almacenamiento_gb
+Gratuito,0,2,60,Comunitario / Email (24-48h),5
+Pro,29,10,600,Prioritario Email y Chat (< 4h),50
+Enterprise,199,Ilimitados,3000,Dedicado 24/7 con SLA 15 min + Manager Asignado,500
