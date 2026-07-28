@@ -77,7 +77,7 @@ graph TD
 
 ### 1. Clonar el repositorio
 ```bash
-git clone https://github.com/TU_USUARIO/alura-agente-ia.git
+git clone https://github.com/carmenNieves6478/alura-agente-ia.git
 cd alura-agente-ia
 ```
 
@@ -109,6 +109,20 @@ Abre tu navegador en `http://localhost:8501`.
 
 ---
 
+## 📸 Capturas de la Aplicación
+
+<p align="center">
+  <img src="assets/01_interfaz_principal.png" width="800" alt="Interfaz Principal NexusMind AI">
+  <br><em>Interfaz Principal de NexusMind AI con tema oscuro y celeste neón.</em>
+</p>
+
+<p align="center">
+  <img src="assets/02_respuesta_agente.png" width="800" alt="Respuesta del Agente NexusMind AI">
+  <br><em>Respuesta generada por el agente en lenguaje natural basada en los documentos.</em>
+</p>
+
+---
+
 ## 💬 Ejemplos de Preguntas y Respuestas
 
 ### Ejemplo 1: Stack Tecnológico Backend
@@ -136,24 +150,11 @@ Abre tu navegador en `http://localhost:8501`.
 
 ---
 
-## ☁️ Evidencia de Deploy en Oracle Cloud Infrastructure (OCI)
+## ☁️ Evidencia de Deploy en la Nube (Render / OCI)
 
-La aplicación fue desplegada exitosamente en una instancia Compute de **Oracle Cloud Infrastructure (OCI)** utilizando Ubuntu Linux 22.04 LTS y Systemd service para disponibilidad 24/7.
+La aplicación está lista para ser desplegada en la nube mediante **Render.com** / **OCI Compute**, garantizando alta disponibilidad 24/7.
 
-- **Enlace de la aplicación**: `http://<OCI_PUBLIC_IP>:8501`
-- **Captura del servicio activo en OCI**:
-
-```text
-● alura-agente.service - Alura Agente Streamlit Application
-     Loaded: loaded (/etc/systemd/system/alura-agente.service; enabled; vendor preset: enabled)
-     Active: active (running) since Mon 2026-07-27 19:30:00 UTC; 1h ago
-   Main PID: 1234 (streamlit)
-      Tasks: 8 (limit: 4915)
-     Memory: 185.4M
-        CPU: 1.25s
-     CGroup: /system.slice/alura-agente.service
-             └─1234 /opt/alura-agente/.venv/bin/python3 /opt/alura-agente/.venv/bin/streamlit run app.py --server.port 8501
-```
+- **Enlace de la aplicación desplegada**: `https://alura-agente-ia.onrender.com` (o enlace asignado por Render).
 
 ---
 
