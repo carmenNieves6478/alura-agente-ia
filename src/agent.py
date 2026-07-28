@@ -50,18 +50,25 @@ class AluraAgent:
 
         # Si tenemos cliente Gemini configurado
         if self.client:
-            try:
-                response = self.client.models.generate_content(
-                    model="gemini-2.5-flash",
-                    contents=prompt,
-                    config=types.GenerateContentConfig(
-                        system_instruction=system_instruction,
-                        temperature=0.2,
+            models_to_try = ["gemini-2.0-flash", "gemini-1.5-flash", "gemini-1.5-pro"]
+            errors = []
+            for model_name in models_to_try:
+                try:
+                    response = self.client.models.generate_content(
+                        model=model_name,
+                        contents=prompt,
+                        config=types.GenerateContentConfig(
+                            system_instruction=system_instruction,
+                            temperature=0.2,
+                        )
                     )
-                )
-                return response.text
-            except Exception as e:
-                return f"❌ Error al consultar la API de Gemini: {str(e)}\n\n(Revisa tu API Key en el archivo .env o en la interfaz)."
+                    return response.text
+                except Exception as e:
+                    errors.append(f"[{model_name}]: {e}")
+
+            # Si falla con la API Key configurada, usar búsqueda local y mostrar la nota
+            fallback_res = self._local_fallback_answer(question)
+            return f"❌ **Error al autenticar en Google Gemini API**:\n{errors[0]}\n\n---\n{fallback_res}"
 
         # Si no hay API Key configurada todavía, proveer una búsqueda basada en coincidencia directa de contexto / fallback
         return self._local_fallback_answer(question)
