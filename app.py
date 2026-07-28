@@ -5,50 +5,78 @@ from src.config import DATA_DIR, GEMINI_API_KEY
 
 # Configuración de página de Streamlit
 st.set_page_config(
-    page_title="Alura Agente - Asistente de Documentación IA",
-    page_icon="🤖",
+    page_title="NexusMind AI - Asistente de Documentación",
+    page_icon="⚡",
     layout="wide",
     initial_sidebar_state="expanded"
 )
 
-# Estilo personalizado CSS
+# Estilo personalizado CSS en tonos celestes / cian (Sky Blue & Cyan Theme)
 st.markdown("""
     <style>
+    /* Fondo principal y fuentes */
+    .stApp {
+        background-color: #F8FAFC;
+    }
+    
+    /* Header principal */
     .main-header {
-        font-size: 2.3rem;
-        font-weight: 700;
-        color: #1E293B;
-        margin-bottom: 0.2rem;
+        font-size: 2.4rem;
+        font-weight: 800;
+        background: linear-gradient(135deg, #0284C7 0%, #06B6D4 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 0.1rem;
     }
     .sub-header {
-        font-size: 1.1rem;
-        color: #64748B;
-        margin-bottom: 2rem;
+        font-size: 1.05rem;
+        color: #475569;
+        margin-bottom: 1.8rem;
     }
+    
+    /* Sidebar personalizado */
+    [data-testid="stSidebar"] {
+        background: linear-gradient(180deg, #F0F9FF 0%, #E0F2FE 100%);
+        border-right: 1px solid #BAE6FD;
+    }
+    
+    /* Tarjetas de mensajes */
     .stChatMessage {
-        border-radius: 10px;
+        border-radius: 12px;
+        box-shadow: 0 2px 4px rgba(14, 165, 233, 0.05);
     }
-    .doc-badge {
-        background-color: #E2E8F0;
-        color: #1E293B;
-        padding: 4px 8px;
-        border-radius: 6px;
-        font-size: 0.85rem;
-        margin-right: 5px;
+    
+    /* Botones de sugerencias */
+    .stButton>button {
+        background: linear-gradient(135deg, #38BDF8 0%, #0284C7 100%);
+        color: white !important;
+        border: none;
+        border-radius: 8px;
+        font-weight: 600;
+        transition: all 0.3s ease;
+    }
+    .stButton>button:hover {
+        background: linear-gradient(135deg, #0284C7 0%, #0369A1 100%);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
     }
     </style>
 """, unsafe_allow_html=True)
 
-# Título de la aplicación
-st.markdown("<div class='main-header'>🤖 Alura Agente - Asistente IA</div>", unsafe_allow_html=True)
-st.markdown("<div class='sub-header'>Respuestas instantáneas en lenguaje natural basadas en tus documentos empresariales (SaaS / Plataforma Digital).</div>", unsafe_allow_html=True)
+# Título y Marca de la Aplicación
+st.markdown("<div class='main-header'>⚡ NexusMind AI</div>", unsafe_allow_html=True)
+st.markdown("<div class='sub-header'>Asistente de Inteligencia Artificial para consulta de documentos empresariales (SaaS & Plataforma Digital).</div>", unsafe_allow_html=True)
 
 # Sidebar
 with st.sidebar:
-    if os.path.exists("assets/logo.jpg"):
-        st.image("assets/logo.jpg", width=110)
+    # Cargar logo celeste personalizado
+    if os.path.exists("assets/logo.png"):
+        st.image("assets/logo.png", width=160)
+    elif os.path.exists("assets/logo.jpg"):
+        st.image("assets/logo.jpg", width=160)
     else:
         st.image("https://img.icons8.com/isometric-folders/100/bot.png", width=70)
+        
     st.title("⚙️ Configuración")
 
     # API Key Input
@@ -56,7 +84,7 @@ with st.sidebar:
         "Clave API de Google Gemini:",
         type="password",
         value=st.session_state.get("api_key", GEMINI_API_KEY or ""),
-        help="Obtén tu clave gratuita en Google AI Studio (https://aistudio.google.com/)"
+        help="Obtén tu clave gratuita en Google AI Studio"
     )
     if user_api_key:
         st.session_state["api_key"] = user_api_key
@@ -64,7 +92,7 @@ with st.sidebar:
     st.divider()
 
     # Documentos Cargados
-    st.subheader("📚 Documentos en la Base de Conocimiento")
+    st.subheader("📚 Base de Conocimiento")
 
     # Instanciar el agente
     agent = AluraAgent(api_key=st.session_state.get("api_key", ""), data_dir=DATA_DIR)
@@ -72,29 +100,29 @@ with st.sidebar:
 
     if docs_summary:
         for doc in docs_summary:
-            st.markdown(f"📄 **{doc['filename']}** ({doc['length']} caracteres)")
+            st.markdown(f"📄 **{doc['filename']}** ({doc['length']} chars)")
     else:
         st.warning("No hay documentos en la carpeta `data/`.")
 
     st.divider()
 
     # Cargar nuevo archivo
-    st.subheader("📤 Subir Nuevo Documento")
-    uploaded_file = st.file_uploader("Añadir PDF, CSV o MD", type=["pdf", "csv", "md", "txt"])
+    st.subheader("📤 Subir Documento")
+    uploaded_file = st.file_uploader("Añadir PDF, CSV, MD o TXT", type=["pdf", "csv", "md", "txt"])
     if uploaded_file is not None:
         os.makedirs(DATA_DIR, exist_ok=True)
         save_path = os.path.join(DATA_DIR, uploaded_file.name)
         with open(save_path, "wb") as f:
             f.write(uploaded_file.getbuffer())
-        st.success(f"¡Archivo '{uploaded_file.name}' guardado con éxito! Recargando...")
+        st.success(f"¡Archivo '{uploaded_file.name}' cargado! Recargando...")
         st.rerun()
 
-# Inicializar historial de chat en session_state
+# Inicializar historial de chat
 if "messages" not in st.session_state:
     st.session_state.messages = [
         {
             "role": "assistant",
-            "content": "¡Hola! Soy **Alura Agente**, tu asistente virtual para la plataforma NexusSaaS. Puedes preguntarme sobre la arquitectura del producto, tarifas, SLA, políticas de privacidad o respuestas de soporte. ¿En qué puedo ayudarte hoy?"
+            "content": "¡Hola! Soy **NexusMind AI**, tu asistente inteligente para la plataforma NexusSaaS. Puedo resolver preguntas sobre arquitectura técnica, planes de precios, políticas de privacidad, SLA y soporte. ¿En qué te ayudo hoy?"
         }
     ]
 
@@ -121,20 +149,17 @@ for msg in st.session_state.messages:
     with st.chat_message(msg["role"]):
         st.markdown(msg["content"])
 
-# Capturar entrada del usuario (vía chat input o botón sugerido)
+# Capturar entrada del usuario
 prompt = st.chat_input("Escribe tu pregunta sobre los documentos...") or selected_question
 
 if prompt:
-    # Agregar mensaje del usuario
     st.session_state.messages.append({"role": "user", "content": prompt})
     with st.chat_message("user"):
         st.markdown(prompt)
 
-    # Generar respuesta con el agente
     with st.chat_message("assistant"):
-        with st.spinner("Buscando en la base de conocimiento y generando respuesta..."):
+        with st.spinner("Consultando la base de conocimiento y generando respuesta..."):
             response = agent.answer_question(prompt)
             st.markdown(response)
 
-    # Guardar en historial
     st.session_state.messages.append({"role": "assistant", "content": response})

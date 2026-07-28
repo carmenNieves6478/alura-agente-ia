@@ -35,7 +35,7 @@ class AluraAgent:
             return "⚠️ No se encontraron documentos en la carpeta `data/`. Por favor añade archivos CSV, PDF o Markdown."
 
         system_instruction = (
-            "Eres el asistente inteligente oficial de NexusSaaS (Alura Agente). "
+            "Eres el asistente inteligente oficial de NexusSaaS (NexusMind AI). "
             "Tu misión es responder las preguntas del usuario utilizando ÚNICAMENTE la información proporcionada "
             "en el siguiente CONTEXTO DE DOCUMENTOS INTERNOS. "
             "Si la respuesta no se encuentra expresamente en la documentación, responde cortésmente que "

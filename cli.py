@@ -11,7 +11,7 @@ from src.agent import AluraAgent
 
 def main():
     print("=" * 60)
-    print("🤖 ALURA AGENTE - CONSOLA DE PRUEBAS LOCAL")
+    print("⚡ NEXUSMIND AI - CONSOLA DE PRUEBAS LOCAL")
     print("=" * 60)
 
     agent = AluraAgent()

@@ -1,8 +1,8 @@
 <p align="center">
-  <img src="assets/logo.jpg" width="160" alt="NexusMind Logo" style="border-radius: 15px;">
+  <img src="assets/logo.png" width="180" alt="NexusMind AI Logo" style="border-radius: 15px;">
 </p>
 
-# 🤖 NexusMind AI (Alura Agente) - Asistente Inteligente RAG
+# ⚡ NexusMind AI - Asistente Inteligente de Documentación (RAG)
 
 [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/)
 [![Framework](https://img.shields.io/badge/AI-Google_Gemini_Flash-4285F4.svg)](https://aistudio.google.com/)
